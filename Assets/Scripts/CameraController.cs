@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
 
 namespace Arkanoid
@@ -35,23 +33,19 @@ namespace Arkanoid
         {
             Self = this;
             _rigidBody = _ball.GetComponent<Rigidbody>();
+            Debug.Log(_isPlayerHoldsBall);
         }
 
         public void OnThrow(CallbackContext context)
         {
-            Debug.Log("OnThrow");
-            //Debug.Log(_isPlayerHoldsBall);
             if (_isPlayerHoldsBall != true) return;
             else
             {
                 BallComponent.Self.BallCurrentSpeed = BallComponent.Self.BallMoveSpeed;
                 _isPlayerHoldsBall = false;
             }
-            
         }
 
-        protected void OnCollisionEnter(Collision collision) => _isPlayerHoldsBall = true; // наверное, будет срабатывать там, где не нужно
-
-        
+        protected void OnCollisionEnter(Collision collision) => _isPlayerHoldsBall = true; 
     }
 }

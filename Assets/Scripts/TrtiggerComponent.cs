@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Arkanoid
 {
@@ -22,16 +20,20 @@ namespace Arkanoid
         [SerializeField]
         private GameObject ball;
 
-       // private Camera1Controller _camera1Controller; 
+        [SerializeField]
+        private float _increaseSpeed = 1f;
 
         private void Start()
         {
             Self = this;
             var collider = GetComponent<Collider>();
-            //collider.isTrigger = true; 
-        }
 
-        private void OnCollisionEnter(Collision collision)
+            if (_isGates1 || _isGates2)
+            {
+                collider.isTrigger = true;
+            }
+        }
+        private void OnTriggerEnter(Collider other)
         {
             if (_isGates1 || _isGates2)
             {
@@ -51,8 +53,15 @@ namespace Arkanoid
                     GameManager.Self.SetDamage();
                 }
             }
+        }
 
-            if (_isBlocks) Destroy(gameObject);
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (_isBlocks) 
+            {
+                Destroy(gameObject);
+                BallComponent.Self.BallCurrentSpeed += _increaseSpeed;
+            }
         }
     }
 }

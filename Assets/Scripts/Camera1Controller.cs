@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using static UnityEngine.InputSystem.InputAction;
+﻿using UnityEngine;
 
 namespace Arkanoid
 {
     public class Camera1Controller : CameraController
     {
         public static Camera1Controller Self;
+
         [SerializeField]
         [Tooltip("Скорость перемещения игрока")]
         [Range(1, 15)]
@@ -15,26 +13,18 @@ namespace Arkanoid
 
         private Controls1 controls;
 
-       
+        protected void Awake() => controls = new Controls1();
 
-        protected void Awake()
-        {
-            controls = new Controls1();
-        }
-        private void Start()
-        {
-            Self = this;
-        }
+        private void Start() => Self = this;
+
         protected void OnEnable()
         {
             controls.Camera1ActionMap.Enable();
             controls.Camera1ActionMap.Throw.performed += OnThrow;
         }
 
-        protected void Update()
-        {
-            OnMovement();
-        }
+        protected void Update() => OnMovement();
+        
         public void OnMovement()
         {
             var value = controls.Camera1ActionMap.Moving.ReadValue<Vector2>();
@@ -46,7 +36,5 @@ namespace Arkanoid
             controls.Camera1ActionMap.Disable();
             controls.Camera1ActionMap.Throw.performed -= OnThrow;
         }
-
-       
     }
 }
