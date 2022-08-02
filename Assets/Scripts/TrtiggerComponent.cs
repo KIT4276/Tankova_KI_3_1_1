@@ -12,16 +12,10 @@ namespace Arkanoid
         private bool _isGates2;
 
         [SerializeField]
-        private bool _isBlocks;
-
-        [SerializeField]
         private bool _isTunnel;
 
         [SerializeField]
         private GameObject ball;
-
-        [SerializeField]
-        private float _increaseSpeed = 1f;
 
         private void Start()
         {
@@ -33,6 +27,7 @@ namespace Arkanoid
                 collider.isTrigger = true;
             }
         }
+
         private void OnTriggerEnter(Collider other)
         {
             if (_isGates1 || _isGates2)
@@ -52,15 +47,6 @@ namespace Arkanoid
                     BallComponent.Self.ToReturnBallToPlayer(cameraPosition, triggerRotation);
                     GameManager.Self.SetDamage();
                 }
-            }
-        }
-
-        private void OnCollisionEnter(Collision collision)
-        {
-            if (_isBlocks) 
-            {
-                Destroy(gameObject);
-                BallComponent.Self.BallCurrentSpeed += _increaseSpeed;
             }
         }
     }

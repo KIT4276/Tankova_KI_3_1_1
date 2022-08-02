@@ -8,8 +8,7 @@ namespace Arkanoid
         [SerializeField]
         [Range(1, 20)]
         private float _ballSpeed = 1;
-        //private Rigidbody _rigidbody;
-        //private float _ballCurrentSpeed;
+
         private Vector3 _currenVelocity;
         public float BallCurrentSpeed { get; set; }
 
@@ -22,7 +21,6 @@ namespace Arkanoid
         private void Start()
         {
             Self = this;
-            //_rigidbody = GetComponent<Rigidbody>();
         }
         private void Update()
         {
@@ -49,6 +47,5 @@ namespace Arkanoid
             Camera1Controller.Self.IsPlayerHoldsBall = true;
             Camera2Controller.Self.IsPlayerHoldsBall = true;
         }
-
     }
 }

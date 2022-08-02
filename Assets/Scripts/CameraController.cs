@@ -8,13 +8,7 @@ namespace Arkanoid
         [SerializeField]
         [Tooltip("Мяч")]
         private GameObject _ball;
-
-        [SerializeField]
-        [Tooltip("Сила броска")]
-        [Range(1, 50)]
-        private float _throwForce = 1;
         
-        private Rigidbody _rigidBody;
         public bool _isPlayerHoldsBall;
         public static CameraController Self;
         
@@ -32,8 +26,6 @@ namespace Arkanoid
         protected  virtual void Start()
         {
             Self = this;
-            _rigidBody = _ball.GetComponent<Rigidbody>();
-            Debug.Log(_isPlayerHoldsBall);
         }
 
         public void OnThrow(CallbackContext context)
