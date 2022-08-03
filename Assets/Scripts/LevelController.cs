@@ -8,61 +8,84 @@ namespace Arkanoid
     {
         public static LevelController Self;
 
-        public int Leve1BlocsCount { get; set; }
-        public int Leve2BlocsCount { get; set; }
-
         protected int _destroyedBlocs;
+        protected int _levelBlocsCount;
 
         [SerializeField]
+        [Tooltip("Первая платформа с камерой")]
         private GameObject Camera1AndPlatform;
 
         [SerializeField]
+        [Tooltip("Вторая платформа с камерой")]
         private GameObject Camera2AndPlatform;
 
         [SerializeField]
+        [Tooltip("Все разрушаемые блоки первого уровня")]
         private List<GameObject> _blocksOn1Lvl;
 
         [SerializeField]
+        [Tooltip("Все разрушаемые блоки второго уровня")]
         private List<GameObject> _blocksOn2Lvl;
 
+        [SerializeField]
+        [Tooltip("Все разрушаемые блоки третьего уровня")]
+        private List<GameObject> _blocksOn3Lvl;
+
+        //[SerializeField]
+        //[Tooltip("Все объекты второго уровня")]
+        //private List<GameObject> _Lvl2;
+
+        //[SerializeField]
+        //[Tooltip("Все объекты третьего уровня")]
+        //private List<GameObject> _Lvl3;
+
+        //List<GameObject> _allCurrentLevel;
+
         public int CurrentLevel { get; set; }
-        //protected int _destroyedBloks;
+        public int DestroyedBloks { get; set; }
 
         private void Awake()
         {
             Self = this;
             CurrentLevel = 1;
-            Leve1BlocsCount = _blocksOn1Lvl.Count;
-            Leve2BlocsCount = _blocksOn2Lvl.Count;
+            Debug.Log("CurrentLevel " + CurrentLevel);
         }
-        private void Start()
+
+        public void LvlCheck()
         {
-            //OnDestroyEventHandler += LvlCheck; //что я делаю не так?!
+            DestroyedBloks++;
+            
+            if (CurrentLevel == 1) { _levelBlocsCount = _blocksOn1Lvl.Count; }
+            if ( DestroyedBloks >= _levelBlocsCount)
+            {
+                CurrentLevel++;
+                LvlTransition();
+                DestroyedBloks = 0;
+            }
         }
-        //public void LvlCheck(BlocksComponent blocksComponent)
-        //{
-        //    Debug.Log("LvlCheck");
-        //    _destroyedBloks++;
-        //    if (_destroyedBlocs >= Leve1BlocsCount)
-        //    {
-        //        CurrentLevel++;
-        //        LvlTransition();
-        //    }
-        //}
+
         public void LvlTransition()
         {
-            if (CurrentLevel == 2)
-            {
-                Camera1AndPlatform.transform.position += new Vector3(15, 0, 0);
-                Camera2AndPlatform.transform.position += new Vector3(15, 0, 0);
-                //ещё здесь можно использовать SetActive, чтобы сразу все уровни
-                //не были активны, а включать их по мере надобности, но пока не до того
-            }
+            Camera1AndPlatform.transform.position += new Vector3(15, 0, 0);
+            Camera2AndPlatform.transform.position += new Vector3(15, 0, 0);
 
-            if (CurrentLevel == 3)
-            {
-                //в принципе, те же действия, что и для второго уровня
-            }
+            BallComponent.Self.ToReturnBallToPlayer(Camera1AndPlatform.transform.position + new Vector3(0f, -1f, 0f), new Quaternion(0.7f, 0.0f, 0.0f, 0.7f));
+            //ToActivateLevel(CurrentLevel);
+            Debug.Log("Current Level " + CurrentLevel);
+            GameManager.Self.SetLifesCount();
+            
+            if (CurrentLevel == 2) {_levelBlocsCount = _blocksOn2Lvl.Count; }
+            if (CurrentLevel == 3) { _levelBlocsCount = _blocksOn3Lvl.Count; }
         }
+
+        //private void ToActivateLevel (int level) // нужно доработать
+        //{
+        //    if (level == 2) { _allCurrentLevel = _Lvl2; }
+        //    if (level == 3) { _allCurrentLevel = _Lvl3; }
+        //    foreach (var item in _allCurrentLevel)
+        //    {
+        //        item.SetActive(true);
+        //    }
+        //}
     }
 }

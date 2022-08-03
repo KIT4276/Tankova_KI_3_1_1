@@ -8,8 +8,10 @@ namespace Arkanoid
         [SerializeField]
         [Tooltip("Мяч")]
         private GameObject _ball;
-        
+
+        [Tooltip("Должно быть активно хотябы у одного в начале игры")]
         public bool _isPlayerHoldsBall;
+
         public static CameraController Self;
         
          public Vector3 CurrentPosition

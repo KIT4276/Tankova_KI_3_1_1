@@ -28,7 +28,7 @@ namespace Arkanoid
         public void OnMovement()
         {
             var value = controls.Camera1ActionMap.Moving.ReadValue<Vector2>();
-            transform.Translate(new Vector3(value.x, 0, value.y) * _movementSpeed * Time.deltaTime, Space.Self);
+            transform.Translate(_movementSpeed * Time.deltaTime * new Vector3(value.x, 0, value.y), Space.Self);
         }
 
         protected void OnDisable()

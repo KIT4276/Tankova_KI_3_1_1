@@ -4,12 +4,14 @@ namespace Arkanoid
 {
     public class BallComponent : MonoBehaviour
     {
-        public static BallComponent Self;
         [SerializeField]
         [Range(1, 20)]
+        [Tooltip("Скорость мяча")]
         private float _ballSpeed = 1;
 
         private Vector3 _currenVelocity;
+
+        public static BallComponent Self;
         public float BallCurrentSpeed { get; set; }
 
         public float BallMoveSpeed 
@@ -25,7 +27,7 @@ namespace Arkanoid
         private void Update()
         {
             _currenVelocity = transform.forward;
-            transform.position += transform.forward * BallCurrentSpeed * Time.deltaTime;
+            transform.position += BallCurrentSpeed * Time.deltaTime * transform.forward;
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -41,9 +43,7 @@ namespace Arkanoid
         public void ToReturnBallToPlayer(Vector3 position, Quaternion rotation)
         {
             BallComponent.Self.BallCurrentSpeed = 0;
-            transform.position = position;
-            transform.rotation = rotation;
-
+            transform.SetPositionAndRotation(position, rotation);
             Camera1Controller.Self.IsPlayerHoldsBall = true;
             Camera2Controller.Self.IsPlayerHoldsBall = true;
         }
