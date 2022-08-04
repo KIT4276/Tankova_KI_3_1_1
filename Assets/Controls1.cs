@@ -44,6 +44,15 @@ public partial class @Controls1 : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""b8e0c4a5-a751-45a9-8480-ae91c7a53310"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -110,6 +119,17 @@ public partial class @Controls1 : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Throw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""84ae503a-8da0-454a-a420-8966ff8a8b0e"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -214,6 +234,7 @@ public partial class @Controls1 : IInputActionCollection2, IDisposable
         m_Camera1ActionMap = asset.FindActionMap("Camera1ActionMap", throwIfNotFound: true);
         m_Camera1ActionMap_Moving = m_Camera1ActionMap.FindAction("Moving", throwIfNotFound: true);
         m_Camera1ActionMap_Throw = m_Camera1ActionMap.FindAction("Throw", throwIfNotFound: true);
+        m_Camera1ActionMap_Pause = m_Camera1ActionMap.FindAction("Pause", throwIfNotFound: true);
         // Camera2ActionMap
         m_Camera2ActionMap = asset.FindActionMap("Camera2ActionMap", throwIfNotFound: true);
         m_Camera2ActionMap_Moving = m_Camera2ActionMap.FindAction("Moving", throwIfNotFound: true);
@@ -279,12 +300,14 @@ public partial class @Controls1 : IInputActionCollection2, IDisposable
     private ICamera1ActionMapActions m_Camera1ActionMapActionsCallbackInterface;
     private readonly InputAction m_Camera1ActionMap_Moving;
     private readonly InputAction m_Camera1ActionMap_Throw;
+    private readonly InputAction m_Camera1ActionMap_Pause;
     public struct Camera1ActionMapActions
     {
         private @Controls1 m_Wrapper;
         public Camera1ActionMapActions(@Controls1 wrapper) { m_Wrapper = wrapper; }
         public InputAction @Moving => m_Wrapper.m_Camera1ActionMap_Moving;
         public InputAction @Throw => m_Wrapper.m_Camera1ActionMap_Throw;
+        public InputAction @Pause => m_Wrapper.m_Camera1ActionMap_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Camera1ActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -300,6 +323,9 @@ public partial class @Controls1 : IInputActionCollection2, IDisposable
                 @Throw.started -= m_Wrapper.m_Camera1ActionMapActionsCallbackInterface.OnThrow;
                 @Throw.performed -= m_Wrapper.m_Camera1ActionMapActionsCallbackInterface.OnThrow;
                 @Throw.canceled -= m_Wrapper.m_Camera1ActionMapActionsCallbackInterface.OnThrow;
+                @Pause.started -= m_Wrapper.m_Camera1ActionMapActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_Camera1ActionMapActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_Camera1ActionMapActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_Camera1ActionMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -310,6 +336,9 @@ public partial class @Controls1 : IInputActionCollection2, IDisposable
                 @Throw.started += instance.OnThrow;
                 @Throw.performed += instance.OnThrow;
                 @Throw.canceled += instance.OnThrow;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -359,6 +388,7 @@ public partial class @Controls1 : IInputActionCollection2, IDisposable
     {
         void OnMoving(InputAction.CallbackContext context);
         void OnThrow(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface ICamera2ActionMapActions
     {
