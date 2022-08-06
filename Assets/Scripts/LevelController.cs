@@ -59,24 +59,43 @@ namespace Arkanoid
             if ( DestroyedBloks >= _levelBlocsCount)
             {
                 CurrentLevel++;
-                LvlTransition();
+                Transition();
                 DestroyedBloks = 0;
             }
         }
 
-        public void LvlTransition()
+        public void Transition()
         {
             Camera1AndPlatform.transform.position += new Vector3(15, 0, 0);
             Camera2AndPlatform.transform.position += new Vector3(15, 0, 0);
-
-            BallComponent.Self.ToReturnBallToPlayer(Camera1AndPlatform.transform.position + new Vector3(0f, -1f, 0f), new Quaternion(0.7f, 0.0f, 0.0f, 0.7f));
+            LvlTransition();
+           
+        }
+        public void LvlTransition()
+        {
+             BallComponent.Self.ToReturnBallToPlayer(Camera1AndPlatform.transform.position + new Vector3(0f, -1f, 0f), new Quaternion(0.7f, 0.0f, 0.0f, 0.7f));
             //ToActivateLevel(CurrentLevel);
             Debug.Log("Current Level " + CurrentLevel);
-            GameManager.Self.SetLifesCount();
+            GameManager.Self.SetStartLifesCount();
             
             if (CurrentLevel == 2) {_levelBlocsCount = _blocksOn2Lvl.Count; }
             if (CurrentLevel == 3) { _levelBlocsCount = _blocksOn3Lvl.Count; }
         }
+
+        public void OnReturnBloks()
+        {
+            if (CurrentLevel == 1) ReturnBloks(_blocksOn1Lvl);
+            if (CurrentLevel == 2) ReturnBloks(_blocksOn2Lvl);
+            if (CurrentLevel == 3) ReturnBloks(_blocksOn3Lvl);
+        }
+        public void ReturnBloks(List<GameObject> blocks)
+        {
+            foreach (var block in blocks)
+            {
+                block.gameObject.SetActive(true);
+            }
+        }
+
 
         //private void ToActivateLevel (int level) // нужно доработать
         //{
