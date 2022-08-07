@@ -11,9 +11,9 @@ namespace Arkanoid
         [Range(1, 15)]
         private float _movementSpeed = 10;
 
-        private Controls1 controls;
+        //private Controls1 controls;
 
-        protected void Awake() => controls = new Controls1();
+        //protected void Awake() => controls = new Controls1();
 
         private void Start() => Self = this;
 

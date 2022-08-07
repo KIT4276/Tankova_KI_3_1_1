@@ -31,16 +31,6 @@ namespace Arkanoid
         [Tooltip("Все разрушаемые блоки третьего уровня")]
         private List<GameObject> _blocksOn3Lvl;
 
-        //[SerializeField]
-        //[Tooltip("Все объекты второго уровня")]
-        //private List<GameObject> _Lvl2;
-
-        //[SerializeField]
-        //[Tooltip("Все объекты третьего уровня")]
-        //private List<GameObject> _Lvl3;
-
-        //List<GameObject> _allCurrentLevel;
-
         public int CurrentLevel { get; set; }
         public int DestroyedBloks { get; set; }
 

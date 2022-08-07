@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace Arkanoid
 {
@@ -11,22 +12,19 @@ namespace Arkanoid
 
         public static GameManager Self;
 
-        private void Start()
-        {
-            Self = this;
-            SetStartLifesCount();
-        }
+        private void Awake() => SetStartLifesCount();
+        private void Start() => Self = this;
 
         public void SetStartLifesCount()
         {
             CurrentlifesCount = _lifesCount;
-            Debug.Log("Lifes count  " + CurrentlifesCount);
         }
 
         public void SetDamage()
         {
             CurrentlifesCount --;
-            Debug.Log("Lifes count  "+CurrentlifesCount);
+
+            TextComponent.Self.SetText(CurrentlifesCount.ToString());
             if (CurrentlifesCount <= 0)
             {
                 LevelController.Self.Transition();

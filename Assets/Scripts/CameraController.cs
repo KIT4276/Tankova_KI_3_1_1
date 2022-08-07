@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using static UnityEngine.InputSystem.InputAction;
 
 namespace Arkanoid
@@ -13,8 +14,10 @@ namespace Arkanoid
         public bool _isPlayerHoldsBall;
 
         public static CameraController Self;
-        
-         public Vector3 CurrentPosition
+
+        protected Controls1 controls;
+
+        public Vector3 CurrentPosition
         {
             get => transform.position;
             private set { }
@@ -24,6 +27,8 @@ namespace Arkanoid
             get => _isPlayerHoldsBall;
             set => _isPlayerHoldsBall = value;
         }
+
+        private void Awake() => controls = new Controls1();
 
         protected  virtual void Start()
         {
