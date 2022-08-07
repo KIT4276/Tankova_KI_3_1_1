@@ -5,12 +5,14 @@ using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
+    [Header("Menu panels")]
     [SerializeField][Tooltip("Меню настроек")]
     private GameObject _settingsMenuPanel;
 
     [SerializeField][Tooltip("Предыдущее меню")]
     private GameObject _menuPanel;
 
+    [Header("Menu elements")]
     [SerializeField][Tooltip("Кнопка возврата")]
     private Button _backButton;
 
@@ -29,7 +31,7 @@ public class SettingsMenu : MonoBehaviour
 
     private void Start()
     {
-        _settingsMenuPanel.gameObject.SetActive(false);
+        _settingsMenuPanel.SetActive(false);
         _backButton.onClick.AddListener(Back);
         _sundOffToggle.isOn = false;
     }
@@ -41,8 +43,8 @@ public class SettingsMenu : MonoBehaviour
 
     private void Back()
     {
-        _settingsMenuPanel.gameObject.SetActive(false);
-        _menuPanel.gameObject.SetActive(true);
+        _settingsMenuPanel.SetActive(false);
+        _menuPanel.SetActive(true);
     }
 
     private void SundOff(){} // заглушка

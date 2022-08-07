@@ -30,12 +30,13 @@ namespace Arkanoid
         private void Awake() => controls = new Controls1();
         private void Start()
         {
-            _menuPause.gameObject.SetActive(false);
+            _menuPause.SetActive(false);
             _rstartButton.onClick.AddListener(Resume);
             _resumeLevelButton.onClick.AddListener(RestartLevel);
             _exitButton.onClick.AddListener(ExitGame);
             _settingsButton.onClick.AddListener(OnSettings);
         }
+
         protected void OnEnable()
         {
             controls.Camera1ActionMap.Enable();
@@ -44,41 +45,41 @@ namespace Arkanoid
 
         private void SowPauseMenu(CallbackContext context)
         {
-            _menuPause.gameObject.SetActive(true);
+            _menuPause.SetActive(true);
             UnityEditor.EditorApplication.isPaused = true;
         }
 
         private void Resume()
         {
-            _menuPause.gameObject.SetActive(false);
+            _menuPause.SetActive(false);
             UnityEditor.EditorApplication.isPaused = false;
         }
 
         private void RestartLevel()// не работает. почему?
         {
-            _menuPause.gameObject.SetActive(false);
+            _menuPause.SetActive(false);
             UnityEditor.EditorApplication.isPaused = false;
             LevelController.Self.OnReturnBloks();
             GameManager.Self.SetStartLifesCount();
+        }
+
+        private void ExitGame()
+        {
+            _menuPause.SetActive(false);
+            _menuSettings.SetActive(false);
+            UnityEditor.EditorApplication.isPlaying = false;
+        }
+
+        private void OnSettings()
+        {
+            _menuPause.SetActive(false);
+            _menuSettings.SetActive(true);
         }
 
         private void OnDisable()
         {
             controls.Camera1ActionMap.Disable();
             controls.Camera1ActionMap.Pause.performed -= SowPauseMenu;
-        }
-
-        private void ExitGame()
-        {
-            _menuPause.gameObject.SetActive(false);
-            _menuSettings.gameObject.SetActive(false);
-            UnityEditor.EditorApplication.isPlaying = false;
-        }
-
-        private void OnSettings()
-        {
-            _menuPause.gameObject.SetActive(false);
-            _menuSettings.gameObject.SetActive(true);
         }
     }
 }

@@ -6,9 +6,12 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField]
-    [Tooltip("Канва главного меню")]
+    [Header("Menu panels")]
+    [SerializeField][Tooltip("Канва главного меню")]
     private GameObject _mainMenuCanvas;
+
+    [SerializeField][Tooltip("Меню настроек")]
+    private GameObject _menuSettings;
 
     [Header("Buttons")]
     [SerializeField][Tooltip("Кнопка новая игра")]
@@ -17,20 +20,24 @@ public class MainMenu : MonoBehaviour
     [SerializeField][Tooltip("Кнопка выхода из игры")]
     private Button _exitGameButton;
 
+    [SerializeField][Tooltip("Кнопка меню настроек")]
+    private Button _settingsButton;
+
     private void Start()
     {
-        _mainMenuCanvas.gameObject.SetActive(true);
+        _mainMenuCanvas.SetActive(true);
         _newGameButton.onClick.AddListener(NewGame);
         _exitGameButton.onClick.AddListener(ExitGame);
+        _settingsButton.onClick.AddListener(OnSettings);
     }
 
-    private void NewGame()
-    {
-        SceneManager.LoadScene(1);
-    }
+    private void NewGame() => SceneManager.LoadScene(1);
 
-    private void ExitGame()
+    private void ExitGame() => UnityEditor.EditorApplication.isPlaying = false;
+
+    private void OnSettings()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
+        _mainMenuCanvas.SetActive(false);
+        _menuSettings.gameObject.SetActive(true);
     }
 }
