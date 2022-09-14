@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Arkanoid
@@ -13,10 +14,12 @@ namespace Arkanoid
 
         public static GameManager Self;
 
+        public static bool IsPlaying { get; set; }
+
         private void Awake()
         {
             SetStartLifesCount();
-
+            IsPlaying = true;
         }
         private void Start() => Self = this;
 
@@ -29,8 +32,14 @@ namespace Arkanoid
             TextComponent.Self.SetText(CurrentlifesCount.ToString());
             if (CurrentlifesCount <= 0)
             {
-                LevelController.Self.Transition();
+                if (LevelController.Self.CurrentLevel == 3) GameOver();//------------------------
+                else LevelController.Self.Transition();
             }
+        }
+        public void GameOver()
+        {
+            IsPlaying = false;
+            SceneManager.LoadScene(0);
         }
     }
 }

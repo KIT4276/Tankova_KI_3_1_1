@@ -31,8 +31,9 @@ namespace Arkanoid
         [Tooltip("Все разрушаемые блоки третьего уровня")]
         private List<GameObject> _blocksOn3Lvl;
 
-        public int CurrentLevel { get; set; }
+        public int CurrentLevel { get; private set; }
         public int DestroyedBloks { get; set; }
+
         public int LevelBlocsCount 
         { get => _levelBlocsCount;
           private set => _levelBlocsCount = value;
@@ -57,7 +58,11 @@ namespace Arkanoid
 
         private void LevelChange(int levelBlocsCount)
         {
-            if (DestroyedBloks >= levelBlocsCount) Transition();
+            if (DestroyedBloks >= levelBlocsCount)
+            {
+                if(CurrentLevel == 3) GameManager.Self.GameOver();//------------------------
+                else Transition();
+            }
         }
 
         public void Transition()
@@ -72,13 +77,10 @@ namespace Arkanoid
         }
         public void LvlTransition()
         {
-             BallComponent.Self.ToReturnBallToPlayer(Camera1AndPlatform.transform.position + new Vector3(0f, -1f, 0f), new Quaternion(0.7f, 0.0f, 0.0f, 0.7f));
+            BallComponent.Self.ToReturnBallToPlayer(Camera1AndPlatform.transform.position + new Vector3(0f, -1f, 0f), new Quaternion(0.7f, 0.0f, 0.0f, 0.7f));
             
-            Debug.Log("Current Level - " + CurrentLevel);
+            Debug.Log("Current Level: " + CurrentLevel);
             GameManager.Self.SetStartLifesCount();
-            
-            //if (CurrentLevel == 2) {_levelBlocsCount = _blocksOn2Lvl.Count; }
-            //if (CurrentLevel == 3) { _levelBlocsCount = _blocksOn3Lvl.Count; }
         }
 
         public void OnReturnBloks()
@@ -91,7 +93,7 @@ namespace Arkanoid
         {
             foreach (var block in blocks)
             {
-                block.gameObject.SetActive(true);
+                block.SetActive(true);
             }
         }
     }

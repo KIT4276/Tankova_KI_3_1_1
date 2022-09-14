@@ -25,7 +25,8 @@ namespace Arkanoid
         private void Update()
         {
             _currenVelocity = transform.forward;
-            transform.position += BallCurrentSpeed * Time.deltaTime * transform.forward;
+
+            if (GameManager.IsPlaying) transform.position += BallCurrentSpeed * Time.deltaTime * transform.forward;
         }
 
         private void OnCollisionEnter(Collision collision) => Rebound(collision);

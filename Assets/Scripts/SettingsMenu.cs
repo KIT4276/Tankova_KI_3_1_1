@@ -1,7 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+
+public enum Complexity : byte
+{
+    Light = 0,
+    Medium = 1,
+    Heavy = 2
+}
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -25,9 +30,9 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField][Tooltip("Выпадающий список сложности игры")]
     private Dropdown _complexityDropdown;
 
-    private float volume; //для заглушки
+    private static float volume; //для заглушки
 
-    private void SetVolume(float value) => volume = value; //для заглушки
+    private static void SetVolume(float value) => volume = value; //для заглушки
 
     private void Start()
     {

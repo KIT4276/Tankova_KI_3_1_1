@@ -31,7 +31,7 @@ public class MainMenu : MonoBehaviour
 
     private void NewGame() => SceneManager.LoadScene(1);
 
-    private void ExitGame() => UnityEditor.EditorApplication.isPlaying = false;
+    private void ExitGame() => Application.Quit();
 
     private void OnSettings()
     {
