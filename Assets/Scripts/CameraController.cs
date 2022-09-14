@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using static UnityEngine.InputSystem.InputAction;
 
 namespace Arkanoid
@@ -15,18 +14,13 @@ namespace Arkanoid
         [Tooltip("Мяч")]
         private GameObject _ball;
 
-        [Tooltip("Должно быть активно хотябы у одного в начале игры")]
-        public bool _isPlayerHoldsBall;
+        [Tooltip("Должно быть активно начале игры")]
+        private bool _isPlayerHoldsBall = true;
 
         public static CameraController Self;
 
         protected Controls1 controls;
 
-        //public Vector3 CurrentPosition
-        //{
-        //    get => transform.position;
-        //    private set { }
-        //}
         public bool IsPlayerHoldsBall
         {
             get => _isPlayerHoldsBall;

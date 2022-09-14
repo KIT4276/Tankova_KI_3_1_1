@@ -53,6 +53,15 @@ public partial class @Controls1 : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Moving2"",
+                    ""type"": ""Value"",
+                    ""id"": ""7461f875-322c-4b8b-9696-937250b21b71"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -132,98 +141,61 @@ public partial class @Controls1 : IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""Camera2ActionMap"",
-            ""id"": ""f909de08-d00d-4212-a99d-a584b9419340"",
-            ""actions"": [
-                {
-                    ""name"": ""Moving"",
-                    ""type"": ""Value"",
-                    ""id"": ""a8052bfd-fa48-4e28-86e4-ec6e13c82c85"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Throw"",
-                    ""type"": ""Button"",
-                    ""id"": ""a4d78d9a-b563-4d43-8ad2-eb2d1cde9b9c"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": ""LRUD"",
-                    ""id"": ""fbf928f6-2743-49c9-a45f-497e23ec1233"",
+                    ""name"": ""2D Vector"",
+                    ""id"": ""4ef76203-9518-406c-b88e-1d3f53c87c7c"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Moving"",
+                    ""action"": ""Moving2"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""add7d2b2-3eed-4788-b85d-b830c9818167"",
+                    ""id"": ""8c7e3e7b-9b72-491f-ba14-0060b27fa3d2"",
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Moving"",
+                    ""action"": ""Moving2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""1a50e8ce-d844-41eb-9452-a81a5ac78a2c"",
+                    ""id"": ""94a2a542-7989-4c0b-9435-45cfc7f4a512"",
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Moving"",
+                    ""action"": ""Moving2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""7dfc1ae7-a7e6-4021-9161-d72527ce8c0c"",
+                    ""id"": ""b89157cf-3e90-4184-ae4a-3463f651beff"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Moving"",
+                    ""action"": ""Moving2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""5669fe51-93f3-474f-8a9f-1cd936bfbf07"",
+                    ""id"": ""8c9c9b2b-df19-4c24-ad64-a1ca477e22d0"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Moving"",
+                    ""action"": ""Moving2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c6fe3626-88b2-44e5-bd35-aba02bcb4eca"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Throw"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -235,10 +207,7 @@ public partial class @Controls1 : IInputActionCollection2, IDisposable
         m_Camera1ActionMap_Moving = m_Camera1ActionMap.FindAction("Moving", throwIfNotFound: true);
         m_Camera1ActionMap_Throw = m_Camera1ActionMap.FindAction("Throw", throwIfNotFound: true);
         m_Camera1ActionMap_Pause = m_Camera1ActionMap.FindAction("Pause", throwIfNotFound: true);
-        // Camera2ActionMap
-        m_Camera2ActionMap = asset.FindActionMap("Camera2ActionMap", throwIfNotFound: true);
-        m_Camera2ActionMap_Moving = m_Camera2ActionMap.FindAction("Moving", throwIfNotFound: true);
-        m_Camera2ActionMap_Throw = m_Camera2ActionMap.FindAction("Throw", throwIfNotFound: true);
+        m_Camera1ActionMap_Moving2 = m_Camera1ActionMap.FindAction("Moving2", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -301,6 +270,7 @@ public partial class @Controls1 : IInputActionCollection2, IDisposable
     private readonly InputAction m_Camera1ActionMap_Moving;
     private readonly InputAction m_Camera1ActionMap_Throw;
     private readonly InputAction m_Camera1ActionMap_Pause;
+    private readonly InputAction m_Camera1ActionMap_Moving2;
     public struct Camera1ActionMapActions
     {
         private @Controls1 m_Wrapper;
@@ -308,6 +278,7 @@ public partial class @Controls1 : IInputActionCollection2, IDisposable
         public InputAction @Moving => m_Wrapper.m_Camera1ActionMap_Moving;
         public InputAction @Throw => m_Wrapper.m_Camera1ActionMap_Throw;
         public InputAction @Pause => m_Wrapper.m_Camera1ActionMap_Pause;
+        public InputAction @Moving2 => m_Wrapper.m_Camera1ActionMap_Moving2;
         public InputActionMap Get() { return m_Wrapper.m_Camera1ActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -326,6 +297,9 @@ public partial class @Controls1 : IInputActionCollection2, IDisposable
                 @Pause.started -= m_Wrapper.m_Camera1ActionMapActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_Camera1ActionMapActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_Camera1ActionMapActionsCallbackInterface.OnPause;
+                @Moving2.started -= m_Wrapper.m_Camera1ActionMapActionsCallbackInterface.OnMoving2;
+                @Moving2.performed -= m_Wrapper.m_Camera1ActionMapActionsCallbackInterface.OnMoving2;
+                @Moving2.canceled -= m_Wrapper.m_Camera1ActionMapActionsCallbackInterface.OnMoving2;
             }
             m_Wrapper.m_Camera1ActionMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -339,60 +313,18 @@ public partial class @Controls1 : IInputActionCollection2, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Moving2.started += instance.OnMoving2;
+                @Moving2.performed += instance.OnMoving2;
+                @Moving2.canceled += instance.OnMoving2;
             }
         }
     }
     public Camera1ActionMapActions @Camera1ActionMap => new Camera1ActionMapActions(this);
-
-    // Camera2ActionMap
-    private readonly InputActionMap m_Camera2ActionMap;
-    private ICamera2ActionMapActions m_Camera2ActionMapActionsCallbackInterface;
-    private readonly InputAction m_Camera2ActionMap_Moving;
-    private readonly InputAction m_Camera2ActionMap_Throw;
-    public struct Camera2ActionMapActions
-    {
-        private @Controls1 m_Wrapper;
-        public Camera2ActionMapActions(@Controls1 wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Moving => m_Wrapper.m_Camera2ActionMap_Moving;
-        public InputAction @Throw => m_Wrapper.m_Camera2ActionMap_Throw;
-        public InputActionMap Get() { return m_Wrapper.m_Camera2ActionMap; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(Camera2ActionMapActions set) { return set.Get(); }
-        public void SetCallbacks(ICamera2ActionMapActions instance)
-        {
-            if (m_Wrapper.m_Camera2ActionMapActionsCallbackInterface != null)
-            {
-                @Moving.started -= m_Wrapper.m_Camera2ActionMapActionsCallbackInterface.OnMoving;
-                @Moving.performed -= m_Wrapper.m_Camera2ActionMapActionsCallbackInterface.OnMoving;
-                @Moving.canceled -= m_Wrapper.m_Camera2ActionMapActionsCallbackInterface.OnMoving;
-                @Throw.started -= m_Wrapper.m_Camera2ActionMapActionsCallbackInterface.OnThrow;
-                @Throw.performed -= m_Wrapper.m_Camera2ActionMapActionsCallbackInterface.OnThrow;
-                @Throw.canceled -= m_Wrapper.m_Camera2ActionMapActionsCallbackInterface.OnThrow;
-            }
-            m_Wrapper.m_Camera2ActionMapActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @Moving.started += instance.OnMoving;
-                @Moving.performed += instance.OnMoving;
-                @Moving.canceled += instance.OnMoving;
-                @Throw.started += instance.OnThrow;
-                @Throw.performed += instance.OnThrow;
-                @Throw.canceled += instance.OnThrow;
-            }
-        }
-    }
-    public Camera2ActionMapActions @Camera2ActionMap => new Camera2ActionMapActions(this);
     public interface ICamera1ActionMapActions
     {
         void OnMoving(InputAction.CallbackContext context);
         void OnThrow(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
-    }
-    public interface ICamera2ActionMapActions
-    {
-        void OnMoving(InputAction.CallbackContext context);
-        void OnThrow(InputAction.CallbackContext context);
+        void OnMoving2(InputAction.CallbackContext context);
     }
 }

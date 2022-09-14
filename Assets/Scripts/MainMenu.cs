@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.IO;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -21,6 +23,19 @@ public class MainMenu : MonoBehaviour
     [SerializeField][Tooltip("Кнопка меню настроек")]
     private Button _settingsButton;
 
+    public static string Path { get; set; }
+
+    private void Awake()
+    {
+        Debug.Log("Игра запущена");
+        Path = @"C:\Users\Log.txt";
+        var time = DateTime.Now.ToLongTimeString();
+
+        if (!File.Exists(Path)) File.Create(Path);
+        File.WriteAllText(Path, '[' + time + ']' + " Start Game" + "\n");
+
+        Debug.Log("Файл Log создан");
+    }
     private void Start()
     {
         _mainMenuCanvas.SetActive(true);
@@ -31,7 +46,13 @@ public class MainMenu : MonoBehaviour
 
     private void NewGame() => SceneManager.LoadScene(1);
 
-    private void ExitGame() => Application.Quit();
+    private void ExitGame()
+    {
+        var time = DateTime.Now.ToLongTimeString(); ;
+        File.AppendAllText(Path, '[' + time +']' + " Exit Game from main menu" + "\n");
+        Debug.Log("Выполнен выход из игры в главном меню");
+        Application.Quit();
+    }
 
     private void OnSettings()
     {

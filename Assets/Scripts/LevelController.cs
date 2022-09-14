@@ -1,5 +1,6 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 namespace Arkanoid
@@ -60,6 +61,7 @@ namespace Arkanoid
         {
             if (DestroyedBloks >= levelBlocsCount)
             {
+                
                 if(CurrentLevel == 3) GameManager.Self.GameOver();//------------------------
                 else Transition();
             }
@@ -68,6 +70,9 @@ namespace Arkanoid
         public void Transition()
         {
             CurrentLevel++;
+            Debug.Log("Переход на уровень " + CurrentLevel);
+            var time = DateTime.Now.ToLongTimeString();
+            File.AppendAllText(GameManager.Path, '[' + time + ']' + "Advance to level" + CurrentLevel.ToString() + "\n");
             DestroyedBloks = 0;
             if(CurrentLevel == 2) _levelBlocsCount = _blocksOn2Lvl.Count;
             if (CurrentLevel == 2) _levelBlocsCount = _blocksOn3Lvl.Count;

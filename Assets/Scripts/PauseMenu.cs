@@ -48,7 +48,7 @@ namespace Arkanoid
             _menuPause.SetActive(true);
             GameManager.IsPlaying = false;
 #if UNITY_EDITOR
-            //UnityEditor.EditorApplication.isPaused = true;
+            UnityEditor.EditorApplication.isPaused = true;
 #endif
         }
 
@@ -57,17 +57,17 @@ namespace Arkanoid
             _menuPause.SetActive(false);
             GameManager.IsPlaying = true;
 #if UNITY_EDITOR
-            //UnityEditor.EditorApplication.isPaused = false;
+            UnityEditor.EditorApplication.isPaused = false;
 #endif
         }
 
-        private void RestartLevel()// не работает. почему?
+        private void RestartLevel()
         {
             _menuPause.SetActive(false);
             GameManager.IsPlaying = true;
 
 #if UNITY_EDITOR
-            //UnityEditor.EditorApplication.isPaused = false;
+            UnityEditor.EditorApplication.isPaused = false;
 #endif
             LevelController.Self.OnReturnBloks();
             GameManager.Self.SetStartLifesCount();
@@ -79,8 +79,9 @@ namespace Arkanoid
             _menuSettings.SetActive(false);
 
             GameManager.Self.GameOver();
+
 #if UNITY_EDITOR
-            //UnityEditor.EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPlaying = false;
 #endif
         }
 

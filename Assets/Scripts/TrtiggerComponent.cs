@@ -27,23 +27,14 @@ namespace Arkanoid
         private void OnTriggerEnter(Collider other)
         {
 
-            if (_isGates1 || _isGates2)
+            if (_isGates1)
             {
-                Vector3 cameraPosition;//
-                if (_isGates1)
-                {
-                    cameraPosition = Camera1Controller.Self.CurrentPosition + new Vector3(0f, -1f, 0f);
-                    var triggerRotation = new Quaternion(0.7f, 0.0f, 0.0f, 0.7f);
-                    BallComponent.Self.ToReturnBallToPlayer(cameraPosition, triggerRotation);
-                    GameManager.Self.SetDamage();
-                }
-                else if (_isGates2)
-                {
-                    cameraPosition = Camera2Controller.Self.CurrentPosition + new Vector3(0f, 1f, 0f);
-                    var triggerRotation = new Quaternion(-0.7f, 0.0f, 0.0f, 0.7f);
-                    BallComponent.Self.ToReturnBallToPlayer(cameraPosition, triggerRotation);
-                    GameManager.Self.SetDamage();
-                }
+                Vector3 cameraPosition;
+
+                cameraPosition = Camera1Controller.Self.CurrentPosition + new Vector3(0f, -1f, 0f);
+                var triggerRotation = new Quaternion(0.7f, 0.0f, 0.0f, 0.7f);
+                BallComponent.Self.ToReturnBallToPlayer(cameraPosition, triggerRotation);
+                GameManager.Self.SetDamage();
             }
         }
     }

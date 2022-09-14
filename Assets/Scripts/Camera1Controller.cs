@@ -25,12 +25,11 @@ namespace Arkanoid
         {
             var value = controls.Camera1ActionMap.Moving.ReadValue<Vector2>();
             OnMovement(value);
+#if UNITY_EDITOR
+            var value2 = controls.Camera1ActionMap.Moving2.ReadValue<Vector2>();
+            OnMovement(value2);
+#endif
         }
-
-        //public void OnMovement(Vector2 value)
-        //{
-        //    transform.Translate(_movementSpeed * Time.deltaTime * new Vector3(value.x, 0, value.y), Space.Self);
-        //}
 
         protected void OnDisable()
         {

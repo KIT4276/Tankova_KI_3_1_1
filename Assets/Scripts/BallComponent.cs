@@ -41,7 +41,6 @@ namespace Arkanoid
             BallCurrentSpeed = 0;
             transform.SetPositionAndRotation(position, rotation);
             Camera1Controller.Self.IsPlayerHoldsBall = true;
-            Camera2Controller.Self.IsPlayerHoldsBall = true;
         }
     }
 }
