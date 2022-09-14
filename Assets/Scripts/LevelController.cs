@@ -33,43 +33,52 @@ namespace Arkanoid
 
         public int CurrentLevel { get; set; }
         public int DestroyedBloks { get; set; }
+        public int LevelBlocsCount 
+        { get => _levelBlocsCount;
+          private set => _levelBlocsCount = value;
+        }
 
         private void Awake()
         {
             Self = this;
             CurrentLevel = 1;
             Debug.Log("CurrentLevel " + CurrentLevel);
+            _levelBlocsCount = _blocksOn1Lvl.Count;
         }
 
         public void LvlCheck()
         {
             DestroyedBloks++;
-            
-            if (CurrentLevel == 1) { _levelBlocsCount = _blocksOn1Lvl.Count; }
-            if ( DestroyedBloks >= _levelBlocsCount)
-            {
-                CurrentLevel++;
-                Transition();
-                DestroyedBloks = 0;
-            }
+            _levelBlocsCount--;
+            if (CurrentLevel == 1) LevelChange(_blocksOn1Lvl.Count);
+            if (CurrentLevel == 2) LevelChange(_blocksOn2Lvl.Count);
+            if(CurrentLevel == 3) Debug.Log(CurrentLevel);
+        }
+
+        private void LevelChange(int levelBlocsCount)
+        {
+            if (DestroyedBloks >= levelBlocsCount) Transition();
         }
 
         public void Transition()
         {
+            CurrentLevel++;
+            DestroyedBloks = 0;
+            if(CurrentLevel == 2) _levelBlocsCount = _blocksOn2Lvl.Count;
+            if (CurrentLevel == 2) _levelBlocsCount = _blocksOn3Lvl.Count;
             Camera1AndPlatform.transform.position += new Vector3(15, 0, 0);
             Camera2AndPlatform.transform.position += new Vector3(15, 0, 0);
             LvlTransition();
-           
         }
         public void LvlTransition()
         {
              BallComponent.Self.ToReturnBallToPlayer(Camera1AndPlatform.transform.position + new Vector3(0f, -1f, 0f), new Quaternion(0.7f, 0.0f, 0.0f, 0.7f));
-            //ToActivateLevel(CurrentLevel);
-            Debug.Log("Current Level " + CurrentLevel);
+            
+            Debug.Log("Current Level - " + CurrentLevel);
             GameManager.Self.SetStartLifesCount();
             
-            if (CurrentLevel == 2) {_levelBlocsCount = _blocksOn2Lvl.Count; }
-            if (CurrentLevel == 3) { _levelBlocsCount = _blocksOn3Lvl.Count; }
+            //if (CurrentLevel == 2) {_levelBlocsCount = _blocksOn2Lvl.Count; }
+            //if (CurrentLevel == 3) { _levelBlocsCount = _blocksOn3Lvl.Count; }
         }
 
         public void OnReturnBloks()
@@ -85,16 +94,5 @@ namespace Arkanoid
                 block.gameObject.SetActive(true);
             }
         }
-
-
-        //private void ToActivateLevel (int level) // нужно доработать
-        //{
-        //    if (level == 2) { _allCurrentLevel = _Lvl2; }
-        //    if (level == 3) { _allCurrentLevel = _Lvl3; }
-        //    foreach (var item in _allCurrentLevel)
-        //    {
-        //        item.SetActive(true);
-        //    }
-        //}
     }
 }

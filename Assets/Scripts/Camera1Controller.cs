@@ -6,16 +6,14 @@ namespace Arkanoid
     {
         public static Camera1Controller Self;
 
-        [SerializeField]
-        [Tooltip("Скорость перемещения игрока")]
-        [Range(1, 15)]
-        private float _movementSpeed = 10;
-
-        //private Controls1 controls;
-
-        //protected void Awake() => controls = new Controls1();
+        public Vector3 CurrentPosition
+        {
+            get => transform.position;
+            private set { }
+        }
 
         private void Start() => Self = this;
+        
 
         protected void OnEnable()
         {
@@ -23,13 +21,16 @@ namespace Arkanoid
             controls.Camera1ActionMap.Throw.performed += OnThrow;
         }
 
-        protected void Update() => OnMovement();
-        
-        public void OnMovement()
+        protected void Update()
         {
             var value = controls.Camera1ActionMap.Moving.ReadValue<Vector2>();
-            transform.Translate(_movementSpeed * Time.deltaTime * new Vector3(value.x, 0, value.y), Space.Self);
+            OnMovement(value);
         }
+
+        //public void OnMovement(Vector2 value)
+        //{
+        //    transform.Translate(_movementSpeed * Time.deltaTime * new Vector3(value.x, 0, value.y), Space.Self);
+        //}
 
         protected void OnDisable()
         {

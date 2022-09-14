@@ -7,6 +7,11 @@ namespace Arkanoid
     public abstract class CameraController : MonoBehaviour
     {
         [SerializeField]
+        [Tooltip("Скорость перемещения игрока")]
+        [Range(1, 15)]
+        protected float _movementSpeed = 10;
+
+        [SerializeField]
         [Tooltip("Мяч")]
         private GameObject _ball;
 
@@ -17,11 +22,11 @@ namespace Arkanoid
 
         protected Controls1 controls;
 
-        public Vector3 CurrentPosition
-        {
-            get => transform.position;
-            private set { }
-        }
+        //public Vector3 CurrentPosition
+        //{
+        //    get => transform.position;
+        //    private set { }
+        //}
         public bool IsPlayerHoldsBall
         {
             get => _isPlayerHoldsBall;
@@ -30,9 +35,11 @@ namespace Arkanoid
 
         private void Awake() => controls = new Controls1();
 
-        protected  virtual void Start()
+        protected void Start() => Self = this;
+
+        protected void OnMovement(Vector2 value)
         {
-            Self = this;
+            transform.Translate(_movementSpeed * Time.deltaTime * new Vector3(value.x, 0, value.y), Space.Self);
         }
 
         public void OnThrow(CallbackContext context)

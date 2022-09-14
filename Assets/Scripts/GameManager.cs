@@ -7,18 +7,20 @@ namespace Arkanoid
     {
         [SerializeField]
         [Range(1, 50)]
-        private int _lifesCount = 5;
+        private int _lifesCount = 10;
+
         public int CurrentlifesCount { get; private set; }
 
         public static GameManager Self;
 
-        private void Awake() => SetStartLifesCount();
+        private void Awake()
+        {
+            SetStartLifesCount();
+
+        }
         private void Start() => Self = this;
 
-        public void SetStartLifesCount()
-        {
-            CurrentlifesCount = _lifesCount;
-        }
+        public void SetStartLifesCount() => CurrentlifesCount = _lifesCount;
 
         public void SetDamage()
         {

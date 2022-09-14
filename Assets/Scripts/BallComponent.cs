@@ -20,20 +20,15 @@ namespace Arkanoid
             private set { }
         }
        
-        private void Start()
-        {
-            Self = this;
-        }
+        private void Start() => Self = this;
+
         private void Update()
         {
             _currenVelocity = transform.forward;
             transform.position += BallCurrentSpeed * Time.deltaTime * transform.forward;
         }
 
-        private void OnCollisionEnter(Collision collision)
-        {
-            Rebound(collision);
-        }
+        private void OnCollisionEnter(Collision collision) => Rebound(collision);
 
         private void Rebound(Collision currentCollision)
         {
@@ -42,7 +37,7 @@ namespace Arkanoid
 
         public void ToReturnBallToPlayer(Vector3 position, Quaternion rotation)
         {
-            BallComponent.Self.BallCurrentSpeed = 0;
+            BallCurrentSpeed = 0;
             transform.SetPositionAndRotation(position, rotation);
             Camera1Controller.Self.IsPlayerHoldsBall = true;
             Camera2Controller.Self.IsPlayerHoldsBall = true;

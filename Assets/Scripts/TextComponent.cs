@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace Arkanoid
@@ -15,9 +13,10 @@ namespace Arkanoid
         private void Start() => Self = this;
 
         private void LateUpdate()
-        { 
+        {
             _text.text = GameManager.Self.CurrentlifesCount.ToString();
             if (_text.text == "1") _text.color = Color.red;
+            else _text.color = Color.black;
         }
 
         public void SetText(string newText)

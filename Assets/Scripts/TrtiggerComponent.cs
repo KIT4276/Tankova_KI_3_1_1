@@ -4,35 +4,32 @@ namespace Arkanoid
 {
     public class TrtiggerComponent : MonoBehaviour 
     {
-        public static TrtiggerComponent Self;
         [SerializeField]
         private bool _isGates1;
-
         [SerializeField]
         private bool _isGates2;
-
         [SerializeField]
         private bool _isTunnel;
-
         [SerializeField]
         private GameObject ball;
+
+        public static TrtiggerComponent Self;
 
         private void Start()
         {
             Self = this;
             var collider = GetComponent<Collider>();
 
-            if (_isGates1 || _isGates2)
-            {
-                collider.isTrigger = true;
-            }
+            if (_isGates1 || _isGates2) collider.isTrigger = true;
+            else collider.isTrigger = false;
         }
 
         private void OnTriggerEnter(Collider other)
         {
+
             if (_isGates1 || _isGates2)
             {
-                Vector3 cameraPosition;
+                Vector3 cameraPosition;//
                 if (_isGates1)
                 {
                     cameraPosition = Camera1Controller.Self.CurrentPosition + new Vector3(0f, -1f, 0f);
