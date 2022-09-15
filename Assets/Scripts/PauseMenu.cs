@@ -48,7 +48,7 @@ namespace Arkanoid
             _menuPause.SetActive(true);
             GameManager.IsPlaying = false;
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPaused = true;
+            GameLogs.Self.WriteLog("Pause pressed");
 #endif
         }
 
@@ -58,6 +58,7 @@ namespace Arkanoid
             GameManager.IsPlaying = true;
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPaused = false;
+            GameLogs.Self.WriteLog("Resume pressed");
 #endif
         }
 
@@ -68,6 +69,7 @@ namespace Arkanoid
 
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPaused = false;
+            GameLogs.Self.WriteLog("Restart Level pressed");
 #endif
             LevelController.Self.OnReturnBloks();
             GameManager.Self.SetStartLifesCount();
@@ -82,6 +84,7 @@ namespace Arkanoid
 
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPaused = false;
 #endif
         }
 
@@ -89,6 +92,9 @@ namespace Arkanoid
         {
             _menuPause.SetActive(false);
             _menuSettings.SetActive(true);
+#if UNITY_EDITOR
+            GameLogs.Self.WriteLog("Enter settings");
+#endif
         }
 
         private void OnDisable()

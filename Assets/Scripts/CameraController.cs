@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.IO;
+using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
 
 namespace Arkanoid
@@ -43,6 +44,9 @@ namespace Arkanoid
             {
                 BallComponent.Self.BallCurrentSpeed = BallComponent.Self.BallMoveSpeed;
                 _isPlayerHoldsBall = false;
+#if UNITY_EDITOR
+                GameLogs.Self.WriteLog("The ball is thrown");
+#endif
             }
         }
 

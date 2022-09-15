@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Arkanoid
@@ -15,17 +13,14 @@ namespace Arkanoid
 
         public static GameManager Self;
 
-        public static string Path { get; set; }
-
         public static bool IsPlaying { get; set; }
 
         private void Awake()
         {
-            Path = @"C:\Users\Log.txt";
             SceneManager.UnloadSceneAsync(1);
-            Debug.Log("Старт игровой сцены");
-            var time = DateTime.Now.ToLongTimeString();
-            File.AppendAllText(Path, '[' + time + ']' + "Game scene start" + "\n");
+#if UNITY_EDITOR
+            GameLogs.Self.WriteLog("Game scene start");
+#endif
             SetStartLifesCount();
             IsPlaying = true;
         }
@@ -35,9 +30,10 @@ namespace Arkanoid
 
         public void SetDamage()
         {
-            Debug.Log("Мяч упущен");
-            File.AppendAllText(Path, "Ball missed" + "\n");
-            CurrentlifesCount --;
+#if UNITY_EDITOR
+            GameLogs.Self.WriteLog("Ball missed");
+#endif
+            CurrentlifesCount--;
 
             TextComponent.Self.SetText(CurrentlifesCount.ToString());
             if (CurrentlifesCount <= 0)
@@ -49,10 +45,7 @@ namespace Arkanoid
         public void GameOver()
         {
             IsPlaying = false;
-            var time = DateTime.Now.ToLongTimeString();
-            File.AppendAllText(Path, '[' + time + ']' + " Exit Game" + "\n");
-            Debug.Log("Выполнен выход из игры");
-            //SceneManager.LoadScene(0);
+            GameLogs.Self.WriteLog("Exit Game" + "\n");
             Application.Quit();
         }
     }

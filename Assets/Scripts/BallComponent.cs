@@ -41,6 +41,9 @@ namespace Arkanoid
             BallCurrentSpeed = 0;
             transform.SetPositionAndRotation(position, rotation);
             Camera1Controller.Self.IsPlayerHoldsBall = true;
+#if UNITY_EDITOR
+            GameLogs.Self.WriteLog("Ball returned to player");
+#endif
         }
     }
 }

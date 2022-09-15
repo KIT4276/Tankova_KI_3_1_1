@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
 namespace Arkanoid
@@ -70,9 +69,9 @@ namespace Arkanoid
         public void Transition()
         {
             CurrentLevel++;
-            Debug.Log("Переход на уровень " + CurrentLevel);
-            var time = DateTime.Now.ToLongTimeString();
-            File.AppendAllText(GameManager.Path, '[' + time + ']' + "Advance to level" + CurrentLevel.ToString() + "\n");
+#if UNITY_EDITOR
+            GameLogs.Self.WriteLog("Advance to level");
+#endif
             DestroyedBloks = 0;
             if(CurrentLevel == 2) _levelBlocsCount = _blocksOn2Lvl.Count;
             if (CurrentLevel == 2) _levelBlocsCount = _blocksOn3Lvl.Count;
@@ -83,8 +82,6 @@ namespace Arkanoid
         public void LvlTransition()
         {
             BallComponent.Self.ToReturnBallToPlayer(Camera1AndPlatform.transform.position + new Vector3(0f, -1f, 0f), new Quaternion(0.7f, 0.0f, 0.0f, 0.7f));
-            
-            Debug.Log("Current Level: " + CurrentLevel);
             GameManager.Self.SetStartLifesCount();
         }
 

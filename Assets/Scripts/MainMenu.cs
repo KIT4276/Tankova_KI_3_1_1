@@ -1,62 +1,57 @@
-﻿using System;
-using System.IO;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour
+namespace Arkanoid
 {
-    [Header("Menu panels")]
-    [SerializeField][Tooltip("Канва главного меню")]
-    private GameObject _mainMenuCanvas;
-
-    [SerializeField][Tooltip("Меню настроек")]
-    private GameObject _menuSettings;
-
-    [Header("Buttons")]
-    [SerializeField][Tooltip("Кнопка новая игра")]
-    private Button _newGameButton;
-
-    [SerializeField][Tooltip("Кнопка выхода из игры")]
-    private Button _exitGameButton;
-
-    [SerializeField][Tooltip("Кнопка меню настроек")]
-    private Button _settingsButton;
-
-    public static string Path { get; set; }
-
-    private void Awake()
+    public class MainMenu : MonoBehaviour
     {
-        Debug.Log("Игра запущена");
-        Path = @"C:\Users\Log.txt";
-        var time = DateTime.Now.ToLongTimeString();
+        [Header("Menu panels")]
+        [SerializeField]
+        [Tooltip("Канва главного меню")]
+        private GameObject _mainMenuCanvas;
 
-        if (!File.Exists(Path)) File.Create(Path);
-        File.WriteAllText(Path, '[' + time + ']' + " Start Game" + "\n");
+        [SerializeField]
+        [Tooltip("Меню настроек")]
+        private GameObject _menuSettings;
 
-        Debug.Log("Файл Log создан");
-    }
-    private void Start()
-    {
-        _mainMenuCanvas.SetActive(true);
-        _newGameButton.onClick.AddListener(NewGame);
-        _exitGameButton.onClick.AddListener(ExitGame);
-        _settingsButton.onClick.AddListener(OnSettings);
-    }
+        [Header("Buttons")]
+        [SerializeField]
+        [Tooltip("Кнопка новая игра")]
+        private Button _newGameButton;
 
-    private void NewGame() => SceneManager.LoadScene(1);
+        [SerializeField]
+        [Tooltip("Кнопка выхода из игры")]
+        private Button _exitGameButton;
 
-    private void ExitGame()
-    {
-        var time = DateTime.Now.ToLongTimeString(); ;
-        File.AppendAllText(Path, '[' + time +']' + " Exit Game from main menu" + "\n");
-        Debug.Log("Выполнен выход из игры в главном меню");
-        Application.Quit();
-    }
+        [SerializeField]
+        [Tooltip("Кнопка меню настроек")]
+        private Button _settingsButton;
 
-    private void OnSettings()
-    {
-        _mainMenuCanvas.SetActive(false);
-        _menuSettings.gameObject.SetActive(true);
+        private void Start()
+        {
+            GameLogs.Self.WriteLog("Start Game");
+            _mainMenuCanvas.SetActive(true);
+            _newGameButton.onClick.AddListener(NewGame);
+            _exitGameButton.onClick.AddListener(ExitGame);
+            _settingsButton.onClick.AddListener(OnSettings);
+        }
+
+        private void NewGame() => SceneManager.LoadScene(1);
+
+        private void ExitGame()
+        {
+            GameLogs.Self.WriteLog("Exit Game" + "\n");
+            Application.Quit();
+        }
+
+        private void OnSettings()
+        {
+            _mainMenuCanvas.SetActive(false);
+            _menuSettings.gameObject.SetActive(true);
+#if UNITY_EDITOR
+            GameLogs.Self.WriteLog("Settings pressed");
+#endif
+        }
     }
 }
