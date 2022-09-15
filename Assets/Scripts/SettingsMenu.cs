@@ -38,20 +38,24 @@ namespace Arkanoid
         [Tooltip("Выпадающий список сложности игры")]
         private Dropdown _complexityDropdown;
 
-        private static float volume; //для заглушки
+        private Complexity _complexity;
 
-        private static void SetVolume(float value) => volume = value; //для заглушки
+        private float _volume; //для заглушки
+
+        private bool _sundOff;
 
         private void Start()
         {
             _settingsMenuPanel.SetActive(false);
             _backButton.onClick.AddListener(Back);
-            _sundOffToggle.isOn = false;
+            SetAllSettings();
         }
-        private void LateUpdate()
+
+        private void SetAllSettings()
         {
-            if (_sundOffToggle.isOn == true) SundOff();
-            SetVolume(_volumeSlider.value); // заглушка
+            _complexityDropdown.value = ((byte)DataHolder._complexity);
+            _volumeSlider.value = DataHolder._volume;
+            _sundOffToggle.isOn = DataHolder._sundOff;
         }
 
         private void Back()
@@ -64,6 +68,33 @@ namespace Arkanoid
 #endif
         }
 
-        private void SundOff() { } // заглушка
+        public void GetDropdown(int value)
+        {
+            switch (value)
+            {
+                case 0:
+                    _complexity = Complexity.Light;
+                    break;
+                case 1:
+                    _complexity = Complexity.Medium;
+                    break;
+                case 2:
+                    _complexity = Complexity.Heavy;
+                    break;
+            }
+            DataHolder._complexity = _complexity;
+        }
+
+        public void GetVolume()
+        {
+            _volume = _volumeSlider.value;
+            DataHolder._volume = _volumeSlider.value;
+        }
+
+        public void GetSundOff()
+        {
+            _sundOff = _sundOffToggle.isOn;
+            DataHolder._sundOff = _sundOffToggle.isOn;
+        }
     }
 }
