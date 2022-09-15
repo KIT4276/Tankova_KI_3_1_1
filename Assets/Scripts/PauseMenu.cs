@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEngine.InputSystem.InputAction;
 
@@ -16,7 +17,7 @@ namespace Arkanoid
         [SerializeField] [Tooltip("Кнопка меню настроек")]
         private Button _settingsButton;
 
-        [SerializeField] [Tooltip("Кнопка перезапуска уровня")]
+        [SerializeField] [Tooltip("Кнопка перезапуска")]
         private Button _resumeLevelButton;
 
         [SerializeField] [Tooltip("Кнопка возобновления игры")]
@@ -31,8 +32,8 @@ namespace Arkanoid
         private void Start()
         {
             _menuPause.SetActive(false);
-            _rstartButton.onClick.AddListener(Resume);
-            _resumeLevelButton.onClick.AddListener(RestartLevel);
+            _rstartButton.onClick.AddListener(Restart);
+            _resumeLevelButton.onClick.AddListener(Resume);
             _exitButton.onClick.AddListener(ExitGame);
             _settingsButton.onClick.AddListener(OnSettings);
         }
@@ -62,17 +63,16 @@ namespace Arkanoid
 #endif
         }
 
-        private void RestartLevel()
+        public void Restart()
         {
             _menuPause.SetActive(false);
             GameManager.IsPlaying = true;
 
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPaused = false;
-            GameLogs.Self.WriteLog("Restart Level pressed");
+            GameLogs.Self.WriteLog("Restart pressed");
 #endif
-            LevelController.Self.OnReturnBloks();
-            GameManager.Self.SetStartLifesCount();
+            SceneManager.LoadScene(1);
         }
 
         private void ExitGame()

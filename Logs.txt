@@ -24,3 +24,83 @@
 [22:56:39]Pause pressed
 [22:56:40]Enter settings
 [22:56:43]Return from settings menu
+[23:05:44]Start Game
+[23:05:46]Settings pressed
+[23:05:51]Return from settings menu
+[23:05:52]Game scene start
+[23:05:53]The ball is thrown
+[23:05:54]Pause pressed
+[23:05:56]Resume pressed
+[23:06:00]Pause pressed
+[23:06:02]Resume pressed
+[23:08:53]Start Game
+[23:08:55]Game scene start
+[23:08:56]Pause pressed
+[23:09:00]Restart pressed
+[23:09:00]Resume pressed
+[23:09:00]Game scene start
+[23:09:01]The ball is thrown
+[23:09:02]Pause pressed
+[23:09:03]Restart pressed
+[23:09:03]Resume pressed
+[23:09:03]Game scene start
+[23:09:06]The ball is thrown
+[23:09:09]Pause pressed
+[23:09:10]Restart pressed
+[23:09:10]Resume pressed
+[23:09:10]Game scene start
+[23:09:59]Start Game
+[23:10:00]Game scene start
+[23:10:02]The ball is thrown
+[23:10:02]Pause pressed
+[23:10:04]Pause pressed
+[23:10:06]Restart pressed
+[23:10:06]Game scene start
+[23:10:07]The ball is thrown
+[23:10:09]Pause pressed
+[23:10:10]Restart pressed
+[23:10:10]Game scene start
+[23:10:12]The ball is thrown
+[23:10:18]Pause pressed
+[23:10:19]Restart pressed
+[23:10:19]Game scene start
+[23:10:20]The ball is thrown
+[23:10:27]Pause pressed
+[23:12:05]Start Game
+[23:12:07]Game scene start
+[23:12:08]The ball is thrown
+[23:12:11]Pause pressed
+[23:12:12]Resume pressed
+[23:12:13]Ball returned to player
+[23:12:13]Ball missed
+[23:12:15]The ball is thrown
+[23:12:17]Pause pressed
+[23:12:18]Restart pressed
+[23:12:18]Game scene start
+[23:12:21]The ball is thrown
+[23:12:23]Pause pressed
+[23:12:24]Enter settings
+[23:12:28]Return from settings menu
+[23:12:31]Resume pressed
+[23:12:33]Ball returned to player
+[23:12:33]Ball missed
+[23:12:34]The ball is thrown
+[23:12:36]Pause pressed
+[23:12:38]Enter settings
+[23:12:43]Start Game
+[23:12:46]Settings pressed
+[23:12:49]Return from settings menu
+[23:12:50]Game scene start
+[23:12:51]The ball is thrown
+[23:12:54]Ball returned to player
+[23:12:54]Ball missed
+[23:12:55]The ball is thrown
+[23:12:57]Pause pressed
+[23:12:58]Enter settings
+[23:13:02]Return from settings menu
+[23:13:04]Resume pressed
+[23:13:05]Pause pressed
+[23:13:06]Restart pressed
+[23:13:06]Game scene start
+[23:13:07]The ball is thrown
+[23:13:08]Pause pressed
