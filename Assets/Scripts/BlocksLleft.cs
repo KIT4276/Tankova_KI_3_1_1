@@ -16,7 +16,7 @@ namespace Arkanoid
         private void LateUpdate()
         {
             _text.text = LevelController.Self.LevelBlocsCount.ToString();
-            if (_text.text == "1") _text.color = Color.red;
+            if (_text.text == "1") _text.color = Color.yellow;
             else _text.color = Color.black;
         }
     }

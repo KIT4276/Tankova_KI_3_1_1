@@ -44,7 +44,7 @@ namespace Arkanoid
             Self = this;
             CurrentLevel = 1;
             Debug.Log("CurrentLevel " + CurrentLevel);
-            _levelBlocsCount = _blocksOn1Lvl.Count;
+            LevelBlocsCount = _blocksOn1Lvl.Count;
         }
 
         public void LvlCheck()
@@ -60,8 +60,7 @@ namespace Arkanoid
         {
             if (DestroyedBloks >= levelBlocsCount)
             {
-                
-                if(CurrentLevel == 3) GameManager.Self.GameOver();//------------------------
+                if (CurrentLevel == 3) GameManager.Self.GameOver();//------------------------
                 else Transition();
             }
         }
@@ -72,9 +71,10 @@ namespace Arkanoid
 #if UNITY_EDITOR
             GameLogs.Self.WriteLog("Advance to level");
 #endif
+            
             DestroyedBloks = 0;
-            if(CurrentLevel == 2) _levelBlocsCount = _blocksOn2Lvl.Count;
-            if (CurrentLevel == 2) _levelBlocsCount = _blocksOn3Lvl.Count;
+            if(CurrentLevel == 2) LevelBlocsCount = _blocksOn2Lvl.Count;
+            if (CurrentLevel == 3) LevelBlocsCount = _blocksOn3Lvl.Count;
             Camera1AndPlatform.transform.position += new Vector3(15, 0, 0);
             Camera2AndPlatform.transform.position += new Vector3(15, 0, 0);
             LvlTransition();
