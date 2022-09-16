@@ -5,9 +5,9 @@ namespace Arkanoid
     public class BallComponent : MonoBehaviour
     {
         [SerializeField]
-        [Range(1, 20)]
+        [Range(200, 400)]
         [Tooltip("Скорость мяча")]
-        private float _ballSpeed = 1;
+        private static float _ballSpeedForse = 300;
 
         [SerializeField]
         private AudioSource _rebound;
@@ -15,11 +15,11 @@ namespace Arkanoid
         private Vector3 _currenVelocity;
 
         public static BallComponent Self;
-        public float BallCurrentSpeed { get; set; }
+        //public float BallCurrentSpeed { get; set; }
 
-        public float BallMoveSpeed 
+        public static float BallMoveSpeed 
         {
-            get => _ballSpeed;
+            get => _ballSpeedForse;
             private set { }
         }
        
@@ -29,7 +29,7 @@ namespace Arkanoid
         {
             _currenVelocity = transform.forward;
 
-            if (GameManager.IsPlaying) transform.position += BallCurrentSpeed * Time.deltaTime * transform.forward;
+            //if (GameManager.IsPlaying) transform.position += BallCurrentSpeed * Time.deltaTime * transform.forward;
         }
 
         private void OnCollisionEnter(Collision collision) => Rebound(collision);
@@ -42,7 +42,8 @@ namespace Arkanoid
 
         public void ToReturnBallToPlayer(Vector3 position, Quaternion rotation)
         {
-            BallCurrentSpeed = 0;
+            //BallCurrentSpeed = 0;
+            
             transform.SetPositionAndRotation(position, rotation);
             Camera1Controller.Self.IsPlayerHoldsBall = true;
 #if UNITY_EDITOR

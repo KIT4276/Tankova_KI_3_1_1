@@ -35,10 +35,12 @@ namespace Arkanoid
             {
                 _ballLost.Play();
                 Vector3 cameraPosition;
+                ball.GetComponent<Rigidbody>().isKinematic = true;
 
                 cameraPosition = Camera1Controller.Self.CurrentPosition + new Vector3(0f, -1f, 0f);
                 var triggerRotation = new Quaternion(0.7f, 0.0f, 0.0f, 0.7f);
                 BallComponent.Self.ToReturnBallToPlayer(cameraPosition, triggerRotation);
+                ball.GetComponent<Rigidbody>().isKinematic = false;
                 GameManager.Self.SetDamage();
             }
         }

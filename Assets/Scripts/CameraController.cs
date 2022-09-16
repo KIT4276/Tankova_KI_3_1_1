@@ -42,7 +42,8 @@ namespace Arkanoid
             if (_isPlayerHoldsBall != true) return;
             else
             {
-                BallComponent.Self.BallCurrentSpeed = BallComponent.Self.BallMoveSpeed;
+                //BallComponent.Self.BallCurrentSpeed = BallComponent.Self.BallMoveSpeed;
+                _ball.GetComponent<Rigidbody>().AddForce(new Vector3(0f, - BallComponent.BallMoveSpeed, 0f));
                 _isPlayerHoldsBall = false;
 #if UNITY_EDITOR
                 GameLogs.Self.WriteLog("The ball is thrown");
