@@ -12,6 +12,10 @@ namespace Arkanoid
         [Tooltip("Мяч")]
         protected GameObject ball;
 
+        [Space, SerializeField]
+        private AudioSource _destr;
+
+
         public static BlocksComponent Self;
 
         public delegate void DestroyDelegate(BlocksComponent blocksComponent);
@@ -25,6 +29,7 @@ namespace Arkanoid
 
         private void OnCollisionEnter(Collision collision)
         {
+            _destr.Play();
             gameObject.SetActive(false);
             LevelController.Self.LvlCheck();
         }

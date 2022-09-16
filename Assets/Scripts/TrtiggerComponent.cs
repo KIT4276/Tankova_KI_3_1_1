@@ -13,6 +13,10 @@ namespace Arkanoid
         [SerializeField]
         private GameObject ball;
 
+        [Space, SerializeField]
+        private AudioSource _ballLost;
+
+
         public static TrtiggerComponent Self;
 
         private void Start()
@@ -29,6 +33,7 @@ namespace Arkanoid
 
             if (_isGates1)
             {
+                _ballLost.Play();
                 Vector3 cameraPosition;
 
                 cameraPosition = Camera1Controller.Self.CurrentPosition + new Vector3(0f, -1f, 0f);

@@ -104,3 +104,107 @@
 [23:13:06]Game scene start
 [23:13:07]The ball is thrown
 [23:13:08]Pause pressed
+[10:11:11]Start Game
+[10:28:46]Start Game
+[10:28:51]Game scene start
+[10:28:59]Start Game
+[10:29:02]Settings pressed
+[10:29:09]Start Game
+[10:29:12]Exit Game
+
+[10:33:21]Start Game
+[10:33:24]Settings pressed
+[10:33:37]Return from settings menu
+[10:33:39]Exit Game
+
+[10:38:42]Start Game
+[10:38:48]Settings pressed
+[10:38:54]Return from settings menu
+[10:38:55]Game scene start
+[10:49:11]Start Game
+[10:49:15]Game scene start
+[10:49:31]The ball is thrown
+[10:49:34]Ball returned to player
+[10:49:34]Ball missed
+[10:51:46]Start Game
+[10:51:49]Settings pressed
+[10:51:53]Return from settings menu
+[10:51:54]Game scene start
+[10:51:58]The ball is thrown
+[10:52:03]Ball returned to player
+[10:52:03]Ball missed
+[10:52:04]The ball is thrown
+[10:52:12]Ball returned to player
+[10:52:12]Ball missed
+[10:55:32]Start Game
+[10:55:37]Game scene start
+[10:55:42]The ball is thrown
+[10:58:06]Start Game
+[10:58:08]Game scene start
+[11:01:14]Start Game
+[11:01:17]Game scene start
+[11:01:19]The ball is thrown
+[11:01:21]Pause pressed
+[11:01:24]Enter settings
+[11:01:28]Return from settings menu
+[11:02:49]Start Game
+[11:02:51]Settings pressed
+[11:02:55]Return from settings menu
+[11:02:56]Game scene start
+[11:03:00]The ball is thrown
+[11:09:04]Start Game
+[11:09:07]Settings pressed
+[11:09:11]Return from settings menu
+[11:09:12]Game scene start
+[11:09:15]The ball is thrown
+[11:09:30]Ball returned to player
+[11:09:30]Ball missed
+[11:14:25]Start Game
+[11:14:28]Settings pressed
+[11:14:33]Return from settings menu
+[11:14:35]Game scene start
+[11:14:39]The ball is thrown
+[11:15:05]Ball returned to player
+[11:15:05]Ball missed
+[11:15:07]The ball is thrown
+[11:15:22]Ball returned to player
+[11:15:22]Ball missed
+[11:15:23]The ball is thrown
+[11:15:27]Ball returned to player
+[11:15:27]Ball missed
+[11:15:28]The ball is thrown
+[11:20:57]Start Game
+[11:21:01]Settings pressed
+[11:21:18]Return from settings menu
+[11:21:19]Game scene start
+[11:21:22]The ball is thrown
+[11:21:26]Pause pressed
+[11:21:30]Enter settings
+[11:21:42]Return from settings menu
+[11:21:44]Restart pressed
+[11:21:44]Game scene start
+[11:21:45]The ball is thrown
+[11:22:00]Ball returned to player
+[11:22:00]Ball missed
+[11:22:02]The ball is thrown
+[11:22:51]Pause pressed
+[11:22:53]Restart pressed
+[11:22:53]Game scene start
+[11:22:54]The ball is thrown
+[11:22:58]Ball returned to player
+[11:22:58]Ball missed
+[11:23:00]The ball is thrown
+[11:23:12]Pause pressed
+[11:23:13]Restart pressed
+[11:23:13]Game scene start
+[11:23:14]The ball is thrown
+[11:24:05]Start Game
+[11:24:09]Game scene start
+[11:24:15]Start Game
+[11:24:19]Settings pressed
+[11:25:13]Start Game
+[11:25:15]Game scene start
+[11:25:17]The ball is thrown
+[11:25:21]Ball returned to player
+[11:25:21]Ball missed
+[11:25:21]The ball is thrown

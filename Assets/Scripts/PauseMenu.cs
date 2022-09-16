@@ -26,6 +26,9 @@ namespace Arkanoid
         [SerializeField] [Tooltip("Кнопка выхода из игры")]
         private Button _exitButton;
 
+        [Space, SerializeField]
+        private AudioSource _click;
+
         private Controls1 controls;
 
         private void Awake() => controls = new Controls1();
@@ -55,6 +58,7 @@ namespace Arkanoid
 
         private void Resume()
         {
+            _click.Play();
             _menuPause.SetActive(false);
             GameManager.IsPlaying = true;
 #if UNITY_EDITOR
@@ -65,6 +69,7 @@ namespace Arkanoid
 
         public void Restart()
         {
+            _click.Play();
             _menuPause.SetActive(false);
             GameManager.IsPlaying = true;
 
@@ -77,6 +82,7 @@ namespace Arkanoid
 
         private void ExitGame()
         {
+            _click.Play();
             _menuPause.SetActive(false);
             _menuSettings.SetActive(false);
 
@@ -90,6 +96,7 @@ namespace Arkanoid
 
         private void OnSettings()
         {
+            _click.Play();
             _menuPause.SetActive(false);
             _menuSettings.SetActive(true);
 #if UNITY_EDITOR

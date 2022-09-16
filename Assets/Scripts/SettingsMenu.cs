@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public enum Complexity : byte
@@ -38,6 +39,13 @@ namespace Arkanoid
         [Tooltip("Выпадающий список сложности игры")]
         private Dropdown _complexityDropdown;
 
+        [Space, SerializeField]
+        private AudioSource _click;
+        [SerializeField]
+        private AudioSource _dropDouvClick;
+        [SerializeField]
+        private AudioSource _ambient;
+
         private Complexity _complexity;
 
         private float _volume; //для заглушки
@@ -60,6 +68,7 @@ namespace Arkanoid
 
         private void Back()
         {
+            _click.Play();
             _settingsMenuPanel.SetActive(false);
             _menuPanel.SetActive(true);
 
@@ -70,6 +79,7 @@ namespace Arkanoid
 
         public void GetDropdown(int value)
         {
+            _dropDouvClick.Play();
             switch (value)
             {
                 case 0:
@@ -87,14 +97,18 @@ namespace Arkanoid
 
         public void GetVolume()
         {
+            _click.Play();
             _volume = _volumeSlider.value;
             DataHolder._volume = _volumeSlider.value;
+            _ambient.volume = _volume;
         }
 
         public void GetSundOff()
         {
+            _click.Play();
             _sundOff = _sundOffToggle.isOn;
             DataHolder._sundOff = _sundOffToggle.isOn;
+            _ambient.mute = _sundOff;
         }
     }
 }

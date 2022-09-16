@@ -9,6 +9,9 @@ namespace Arkanoid
         [Tooltip("Скорость мяча")]
         private float _ballSpeed = 1;
 
+        [SerializeField]
+        private AudioSource _rebound;
+
         private Vector3 _currenVelocity;
 
         public static BallComponent Self;
@@ -33,6 +36,7 @@ namespace Arkanoid
 
         private void Rebound(Collision currentCollision)
         {
+            _rebound.Play();
             transform.forward = Vector3.Reflect(_currenVelocity.normalized, currentCollision.contacts[0].normal);
         }
 

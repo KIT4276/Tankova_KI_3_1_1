@@ -28,6 +28,9 @@ namespace Arkanoid
         [Tooltip("Кнопка меню настроек")]
         private Button _settingsButton;
 
+        [SerializeField]
+        private AudioSource _clickSound;
+
         private void Start()
         {
             GameLogs.Self.WriteLog("Start Game");
@@ -37,16 +40,22 @@ namespace Arkanoid
             _settingsButton.onClick.AddListener(OnSettings);
         }
 
-        private void NewGame() => SceneManager.LoadScene(1);
+        private void NewGame()
+        {
+            _clickSound.Play();
+            SceneManager.LoadScene(1);
+        }
 
         private void ExitGame()
         {
+            _clickSound.Play();
             GameLogs.Self.WriteLog("Exit Game" + "\n");
             Application.Quit();
         }
 
         private void OnSettings()
         {
+            _clickSound.Play();
             _mainMenuCanvas.SetActive(false);
             _menuSettings.gameObject.SetActive(true);
 #if UNITY_EDITOR
